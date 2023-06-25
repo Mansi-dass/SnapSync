@@ -15,7 +15,7 @@ function Login() {
         e.preventDefault()
         const session = await creatSession(user)
         if (session.code === undefined)
-            navigate("/dashboard")
+            navigate(`/dashboard/signIn`)
         else {
             setError(session.message)
         }

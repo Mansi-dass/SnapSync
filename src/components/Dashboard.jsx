@@ -5,8 +5,11 @@ import groupJoinIcon from '../images/group-join-icon.png'
 import searchIcon from '../images/search-icon.png'
 import { account, databases } from '../appwrite/appwriteConfig'
 import { ID } from 'appwrite'
+import { useParams } from 'react-router-dom'
 
 function Dashboard() {
+  const {mode} = useParams()
+  console.log(mode)
   // for components 
   const [popVisible, setPopVisible] = useState(false)
   const [cardVisible, setCardVisible] = useState(true)
@@ -14,7 +17,6 @@ function Dashboard() {
     profileFile: undefined,
     title: ""
   }
-  const [group, setGroup] = useState(initialGroup)
 
   // handling group pop up 
   const handlePlusClick = () => {
@@ -36,6 +38,7 @@ function Dashboard() {
     inputEl.value = ""
   }
 
+  const [group, setGroup] = useState(initialGroup)
   // for Group file value
   const handleChange = (e) => {
     e.preventDefault()
@@ -125,10 +128,6 @@ function Dashboard() {
       .then(response => {
         console.log(response)
         loadCards(response.JoinedGroupIDs)
-
-
-
-
         // worked--->
         // const container = document.getElementById('chatStack')
         // const chatStack = ReactDOM.createRoot(container);
@@ -140,8 +139,6 @@ function Dashboard() {
 
     console.log("group created")
     handleBackClick(e)
-
-
   }
 
 
