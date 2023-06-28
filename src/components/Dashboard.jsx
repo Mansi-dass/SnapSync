@@ -1,15 +1,26 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import camera_light from '../images/camera_light.png'
 import arrowIcon from '../images/arrow.png'
 import groupJoinIcon from '../images/group-join-icon.png'
 import searchIcon from '../images/search-icon.png'
 import { account, databases } from '../appwrite/appwriteConfig'
 import { ID } from 'appwrite'
-import { useParams } from 'react-router-dom'
 
 function Dashboard() {
-  const {mode} = useParams()
-  console.log(mode)
+  const location =useLocation()
+  const {userID, email, mode} = location.state
+  console.log(userID, email, mode)
+  // if(mode==="signIn"){
+
+  // }else{
+
+  // }
+
+  // const load = () =>{
+  //   loadcards()
+  // }
+  
   // for components 
   const [popVisible, setPopVisible] = useState(false)
   const [cardVisible, setCardVisible] = useState(true)

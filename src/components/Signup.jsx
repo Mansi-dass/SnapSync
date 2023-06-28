@@ -16,10 +16,9 @@ function Signup() {
         e.preventDefault()
         const session = await createUser(user, navigate)
         if (session.code === undefined)
-            navigate(`/dashboard/signUp`)
-        else {
+            navigate(`/dashboard`, { state: { userID: session.UserId, email: session.email, mode: "signUp" } })
+        else
             setError(session.message)
-        }
     }
 
     return (

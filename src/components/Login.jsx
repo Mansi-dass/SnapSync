@@ -15,10 +15,9 @@ function Login() {
         e.preventDefault()
         const session = await creatSession(user)
         if (session.code === undefined)
-            navigate(`/dashboard/signIn`)
-        else {
+            navigate(`/dashboard`, { state: { userID: session.userId, email: session.providerUid, mode: "signIn" } })
+        else
             setError(session.message)
-        }
     }
 
     return (
