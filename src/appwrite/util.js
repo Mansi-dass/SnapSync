@@ -39,4 +39,28 @@ export const createUser = (user, navigate) => {
         });
 }
 
- 
+export const createGroupDoc = (group, admin) => {
+    return databases.createDocument(
+        process.env.REACT_APP_APPWRITE_DATABASE_ID,
+        process.env.REACT_APP_APPWRITE_GROUPS_COLLECTION_ID, ID.unique(), {
+        GroupTitle: group.title,
+        // TODO - GroupDp: group.profileFile, ---> need to create a valid url for uploaded picture 
+        Admin: admin,
+        GroupMemberIDs: [admin],
+    });
+}
+
+export const getUserDoc = (user) => {
+    return databases.getDocument(
+        process.env.REACT_APP_APPWRITE_DATABASE_ID,
+        process.env.REACT_APP_APPWRITE_USER_COLLECTION_ID, user)
+}
+
+export const updateUserGroupList = (user, groups) => {
+    return databases.updateDocument(
+        process.env.REACT_APP_APPWRITE_DATABASE_ID,
+        process.env.REACT_APP_APPWRITE_USER_COLLECTION_ID, user, {
+        JoinedGroupIDs: groups
+      })
+}
+
