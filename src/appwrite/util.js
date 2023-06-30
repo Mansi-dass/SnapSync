@@ -40,6 +40,7 @@ export const createUser = (user, navigate) => {
 }
 
 export const createGroupDoc = (group, admin) => {
+    // creating doc for group in database
     return databases.createDocument(
         process.env.REACT_APP_APPWRITE_DATABASE_ID,
         process.env.REACT_APP_APPWRITE_GROUPS_COLLECTION_ID, ID.unique(), {
@@ -51,16 +52,26 @@ export const createGroupDoc = (group, admin) => {
 }
 
 export const getUserDoc = (user) => {
+    // Getting the user doc from database
     return databases.getDocument(
         process.env.REACT_APP_APPWRITE_DATABASE_ID,
         process.env.REACT_APP_APPWRITE_USER_COLLECTION_ID, user)
 }
 
+export const getGroupDoc = (groupId) => {
+    // Getting the group doc from database
+    return databases.getDocument(
+        process.env.REACT_APP_APPWRITE_DATABASE_ID,
+        process.env.REACT_APP_APPWRITE_GROUPS_COLLECTION_ID, groupId)
+}
+
 export const updateUserGroupList = (user, groups) => {
+    // Updating the user doc in the database to add the group
     return databases.updateDocument(
         process.env.REACT_APP_APPWRITE_DATABASE_ID,
         process.env.REACT_APP_APPWRITE_USER_COLLECTION_ID, user, {
         JoinedGroupIDs: groups
-      })
+    })
 }
+
 
