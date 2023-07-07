@@ -31,7 +31,7 @@ function loadCard(GroupDetails) {
       profileFile: GroupDetails.profileFile === undefined ? undefined : GroupDetails.profileFile,
       title: GroupDetails.GroupTitle,
     }
-  } notification="welcome!" />
+  } notification="welcome!" time={(GroupDetails.$updatedAt).slice(11,16)}/>
   return newChildCard
 }
 
