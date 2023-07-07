@@ -50,7 +50,7 @@ export async function loadDashboard(cardComponents, setCardComponents, userId, m
       cardComponentsArray.push(message)
       isMssgInCardComp = true
     }
-    else if (mode === "signIn" && len === 1 && isMssgInCardComp === true) {
+    else if ((mode==="signUp" || mode === "signIn") && len === 1 && isMssgInCardComp === true) {
       try {
         let GroupDetails = await db.getGroupDoc(groupIds[0])
         cardComponentsArray.pop()
@@ -59,7 +59,7 @@ export async function loadDashboard(cardComponents, setCardComponents, userId, m
       } catch (error) { console.log(error) }
       isMssgInCardComp = false
     }
-    else if (mode === "signIn" && len && isMssgInCardComp === false) {
+    else if ((mode==="signUp" || mode === "signIn") && len && isMssgInCardComp === false) {
       for (let index = 0; index < len; index++) {
         try {
           let GroupDetails = await db.getGroupDoc(groupIds[index])
