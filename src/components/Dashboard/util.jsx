@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as db from '../../appwrite/util'
 import { GroupCard } from './Dashboard'
 
@@ -42,15 +42,16 @@ export async function loadDashboard(cardComponents, setCardComponents, userId, m
     console.log(userDetails)
     const groupIds = userDetails.JoinedGroupIDs
     const len = groupIds.length
-    let isMssgInCardComp = false
+    let isMssgInCardComp = "false"
     
-    if (mode === "signUp" || (mode === "signIn" && len === 0)) {
+    if ((mode === "signUp" && isMssgInCardComp==="false" && len === 0) || (mode === "signIn" && len === 0)) {
       let message = <p className='text-sm flex justify-center p-2 text-gray-400'>ⓘ Create Groups or Join existing one's</p>
       // setCardComponents([message])
       cardComponentsArray.push(message)
-      isMssgInCardComp = true
+      console.log(isMssgInCardComp)
+      isMssgInCardComp = "true"
     }
-    else if ((mode==="signUp" || mode === "signIn") && len === 1 && isMssgInCardComp === true) {
+    else if ((mode==="signUp" || mode === "signIn") && len === 1 && isMssgInCardComp === "true") {
       try {
         let GroupDetails = await db.getGroupDoc(groupIds[0])
         cardComponentsArray.pop()
@@ -59,7 +60,7 @@ export async function loadDashboard(cardComponents, setCardComponents, userId, m
       } catch (error) { console.log(error) }
       isMssgInCardComp = false
     }
-    else if ((mode==="signUp" || mode === "signIn") && len && isMssgInCardComp === false) {
+    else if ((mode==="signUp" || mode === "signIn") && len && isMssgInCardComp === "false") {
       for (let index = 0; index < len; index++) {
         try {
           let GroupDetails = await db.getGroupDoc(groupIds[index])
