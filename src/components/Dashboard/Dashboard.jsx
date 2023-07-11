@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { created, loadDashboard } from './util'
+import Chat from '../Chat'
 
 
 function Dashboard() {
@@ -132,7 +133,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className='bg-gray-600 text-gray-200 hidden sm:block sm:col-span-2 lg:col-span-3 '> will connect this part with the chat component created in another file
+          <div className='bg-gray-600 text-gray-200 hidden sm:block sm:col-span-2 lg:col-span-3 '> <Chat/>
           </div>
 
         </div>
