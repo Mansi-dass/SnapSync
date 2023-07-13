@@ -17,7 +17,7 @@ function Dashboard() {
       console.log("cardcomponents :", cardComponents)
     }
     run()
-  },[]);
+  }, []);
 
 
   // for components 
@@ -118,7 +118,7 @@ function Dashboard() {
         </div>
 
         {/* <div style={{ visibility: cardVisible ? 'visible' : 'hidden' }} className='w-full h-full sm:w-2/3 md:w-1/2 bg-black flex flex-col p-5'></div> */}
-        <div style={{ visibility: cardVisible ? 'visible' : 'hidden' }} className='w-full h-full grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4'>
+        <div style={{ visibility: cardVisible ? 'visible' : 'hidden' }} className='w-full h-[calc(100%-68px)] grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4'>
 
           <div className='bg-gray-700 text-gray-300'>
 
@@ -133,7 +133,8 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className='bg-gray-600 text-gray-200 hidden sm:block sm:col-span-2 lg:col-span-3 '> <Chat/>
+          <div className='bg-gray-600 text-gray-200 hidden sm:block sm:col-span-2 lg:col-span-3 '>
+            <Chat />
           </div>
 
         </div>
