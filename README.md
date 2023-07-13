@@ -1,70 +1,44 @@
-# Getting Started with Create React App
-
+# SnapSync!
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Set up SnapSync:
+1. First thing first, make a fork of this repository. By clicking the "fork" symbol.
+2. Clone the forked repository:
 
-In the project directory, you can run:
+#### HTTPS
+```
+$ git clone https://github.com/Mansi-dass/SnapSync.git
+```
+#### GitHub CLI
+```
+$ gh repo clone Mansi-dass/SnapSync
+```
+#### SSH 
+```
+$ git clone git@github.com:Mansi-dass/SnapSync.git
+```
 
-### `npm start`
+## Config / Secrets environment variables
+Copy **.env.sample** to **.env** and add your private information\
+*Note*: never commit this file, it is ignored by Git
 
-Runs the app in the development mode.\
+Create an account on [Appwrite](https://cloud.appwrite.io/), to create your secrets:
+```
+REACT_APP_APPWRITE_API_ENDPOINT="<your-appwrite-api-endpoint>"
+REACT_APP_APPWRITE_PROJECT_ID="<your-appwrite-project-id>"
+REACT_APP_APPWRITE_DATABASE_ID="<your-appwrite-database-id>"
+REACT_APP_APPWRITE_USER_COLLECTION_ID="<your-appwrite-user-collection-id>"
+REACT_APP_APPWRITE_GROUPS_COLLECTION_ID="<your-appwrite-group-collection-id>"
+```
+
+## Running the project
+Note: Make sure your system has **node.js** installed. Then, run:
+```
+$ npm ci
+
+$ npm start
+```
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+The SnapSync is licensed under the [MIT](https://github.com/Mansi-dass/SnapSync/blob/main/LICENSE) license.
