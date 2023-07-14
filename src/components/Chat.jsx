@@ -2,6 +2,12 @@ import React from 'react'
 
 function Chat() {
     let Gname = ""
+    const sendMssg = (e) =>{
+        e.preventDefault()
+        const sentMssg = document.getElementById('message').value
+        sentMssg ? console.log(sentMssg) : console.log("nothing in the mssg")
+    }
+
     return (
         <div className='w-full h-full border-l border-l-gray-600'>
             <nav className='w-full h-[3.2rem] flex justify-between items-center bg-gray-700 '>
@@ -44,9 +50,9 @@ function Chat() {
                     </div>
                 </div>
 
-                <input className='w-[calc(100%-60px)] py-1 px-2 mr-2 bg-gray-700 focus:outline-0' type="text" placeholder='Message...'/>
+                <input id='message' className='w-[calc(100%-60px)] py-1 px-2 mr-2 bg-gray-700 focus:outline-0' type="text" placeholder='Message...'/>
 
-                <img className='bg-gray-400 p-1 pl-2 cursor-pointer rounded-2xl hover:bg-gray-500' src={require('../images/sent-icon.png')} alt="Send" />
+                <img className='bg-gray-400 p-1 pl-2 cursor-pointer rounded-2xl hover:bg-gray-500' src={require('../images/sent-icon.png')} alt="Send" onClick={sendMssg} />
 
             </div>
         </div>
