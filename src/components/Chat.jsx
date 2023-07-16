@@ -1,20 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function Chat() {
+    let [GroupSideBar, setGroupSideBar] = useState(true)
     let Gname = ""
-    const sendMssg = (e) =>{
+
+    const sendMssg = (e) => {
         e.preventDefault()
         const sentMssg = document.getElementById('message').value
         sentMssg ? console.log(sentMssg) : console.log("nothing in the mssg")
     }
 
     return (
-        <div className='w-full h-full border-l border-l-gray-600'>
+        <div className='w-full h-full border-l border-l-gray-600 relative overflow-hidden'>
             <nav className='w-full h-[3.2rem] flex justify-between items-center bg-gray-700 '>
                 <div className='flex m-5 justify-center items-center'>
-                    <img className='w-9 h-9 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs2qYGz5830vmlcv3GkXFoZsIvRucQcaCD6zfE3UZE0w&usqp=CAU&ec=48665699" alt="" />
+                    <img className='w-9 h-9 rounded-full cursor-pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs2qYGz5830vmlcv3GkXFoZsIvRucQcaCD6zfE3UZE0w&usqp=CAU&ec=48665699" alt="" onClick={(e) => {
+                        e.preventDefault()
+                        setGroupSideBar(true)
+                    }} />
                     <div className=''>
-                        <h1 className='ml-2 font-semibold text-gray-200 leading-none'>{Gname ? Gname : "GroupName"}</h1>
+                        <h1 className='ml-2 font-semibold text-gray-200 leading-none cursor-pointer' onClick={(e) => {
+                            e.preventDefault()
+                            setGroupSideBar(true)
+                        }}>
+                            {Gname ? Gname : "GroupName"}
+                        </h1>
                         <p className='ml-2 text-xs text-gray-400 '>Status</p>
                     </div>
                 </div>
@@ -32,11 +42,24 @@ function Chat() {
                 </div>
             </nav>
 
+            {GroupSideBar ?
+                <div className='animate-slideIn w-[28%] h-[calc(100%-3.2rem)] bg-gray-700 absolute -right-[28%] border border-gray-600'>
+                    <img className='w-9 h-9 p-1 m-1 cursor-pointer' src={require('../images/back-icon.png')} alt="<-" onClick={(e) => {
+                        e.preventDefault()
+                        setGroupSideBar(false)
+                    }} />
+                </div> 
+                :
+                <div className='animate-slideOut w-[28%] h-[calc(100%-3.2rem)] bg-gray-700 absolute -right-[28%] border border-gray-600'>
+                    <img className='w-9 h-9 p-1 m-1 cursor-pointer rotate-180' src={require('../images/back-icon.png')} alt="->" />
+                </div>
+            }
+
             <section className='h-[calc(100%-3.2rem)]'>
                 {/* message body */}
             </section>
 
-            <div className='relative -top-12 bg-gray-700 border-l-2 border-r-4 border-gray-600 rounded-xl flex items-center px-1 py-[6px]'>
+            <div className={`${GroupSideBar ? 'w-[calc(100%-28%)]' : 'w-full'} transition-width duration-[600ms] ease-linear relative -top-12 bg-gray-700 border-l-2 border-r-4 border-gray-600 rounded-xl flex items-center px-1 py-[6px]`}>
 
                 <div id='attachPhotoIcon' className='group mx-1 cursor-pointer'>
                     <div className='p-1 relative'>
@@ -49,9 +72,7 @@ function Chat() {
                         </div>
                     </div>
                 </div>
-
-                <input id='message' className='w-[calc(100%-60px)] py-1 px-2 mr-2 bg-gray-700 focus:outline-0' type="text" placeholder='Message...'/>
-
+                <input id='message' className='w-[calc(100%-60px)] py-1 px-2 mr-2 bg-gray-700 focus:outline-0' type="text" placeholder='Message...' />
                 <img className='bg-gray-400 p-1 pl-2 cursor-pointer rounded-2xl hover:bg-gray-500' src={require('../images/sent-icon.png')} alt="Send" onClick={sendMssg} />
 
             </div>
