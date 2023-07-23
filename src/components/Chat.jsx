@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 function Chat() {
-    let [GroupSideBar, setGroupSideBar] = useState(true)
+    let [GroupSideBar, setGroupSideBar] = useState(false)
     let Gname = ""
 
     const sendMssg = (e) => {
@@ -44,11 +44,29 @@ function Chat() {
 
             {GroupSideBar ?
                 <div className='animate-slideIn w-[28%] h-[calc(100%-3.2rem)] bg-gray-700 absolute -right-[28%] border border-gray-600'>
-                    <img className='w-9 h-9 p-1 m-1 cursor-pointer' src={require('../images/back-icon.png')} alt="<-" onClick={(e) => {
+                    <img className='w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 p-1 md:m-1 cursor-pointer absolute' src={require('../images/back-icon.png')} alt="<-" onClick={(e) => {
                         e.preventDefault()
                         setGroupSideBar(false)
                     }} />
-                </div> 
+                    <div className='w-full pt-2 mt-2 lg:mt-4 flex flex-col items-center'>
+                        <div className='w-20 h-20 lg:w-36 lg:h-36 bg-gray-400 rounded-full'>
+                            <img className='rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs2qYGz5830vmlcv3GkXFoZsIvRucQcaCD6zfE3UZE0w&usqp=CAU&ec=48665699" alt="" />
+                        </div>
+                        <div className='flex p-2 items-center  border-b border-gray-600'>
+                            <h1 className='p-1 lg:text-xl font-semibold text-gray-300'>{Gname ? Gname : "GroupName"}</h1>
+                            <img className='mx-1 w-5 h-5 cursor-pointer' src={require('../images/edit-icon.png')} alt="" />
+                        </div>
+                    </div>
+                    <div className='w-full h-full'>
+                        <div className='flex justify-center'>
+                            <span className='w-1/2 py-3 text-gray-200 text-center border-r border-gray-600 opacity-80 font-normal text-sm hover:opacity-100 hover:bg-gray-600 cursor-pointer'>Members</span>
+                            <span className='w-1/2 py-3 text-gray-200 text-center border-r border-gray-600 opacity-80 font-normal text-sm hover:opacity-100 hover:bg-gray-600 cursor-pointer'>Media</span>
+                        </div>
+                        <div className='h-1/2 overflow-y-scroll '>
+                        </div>
+                    </div>
+
+                </div>
                 :
                 <div className='animate-slideOut w-[28%] h-[calc(100%-3.2rem)] bg-gray-700 absolute -right-[28%] border border-gray-600'>
                     <img className='w-9 h-9 p-1 m-1 cursor-pointer rotate-180' src={require('../images/back-icon.png')} alt="->" />
