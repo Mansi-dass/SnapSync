@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 function Chat() {
     let [GroupSideBar, setGroupSideBar] = useState(false)
+    let [GroupSideBarOption, setGroupSideBarOption] = useState("members")
     let Gname = ""
 
     const sendMssg = (e) => {
@@ -52,18 +53,58 @@ function Chat() {
                         <div className='w-20 h-20 lg:w-36 lg:h-36 bg-gray-400 rounded-full'>
                             <img className='rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs2qYGz5830vmlcv3GkXFoZsIvRucQcaCD6zfE3UZE0w&usqp=CAU&ec=48665699" alt="" />
                         </div>
-                        <div className='flex p-2 items-center  border-b border-gray-600'>
+                        <div className='flex p-2 items-center'>
                             <h1 className='p-1 lg:text-xl font-semibold text-gray-300'>{Gname ? Gname : "GroupName"}</h1>
                             <img className='mx-1 w-5 h-5 cursor-pointer' src={require('../images/edit-icon.png')} alt="" />
                         </div>
                     </div>
                     <div className='w-full h-full'>
-                        <div className='flex justify-center'>
-                            <span className='w-1/2 py-3 text-gray-200 text-center border-r border-gray-600 opacity-80 font-normal text-sm hover:opacity-100 hover:bg-gray-600 cursor-pointer'>Members</span>
-                            <span className='w-1/2 py-3 text-gray-200 text-center border-r border-gray-600 opacity-80 font-normal text-sm hover:opacity-100 hover:bg-gray-600 cursor-pointer'>Media</span>
+                        <div className='flex justify-center border border-gray-700'>
+                            <span className={`w-1/2 py-3 text-gray-200 text-center border-r border-gray-600 opacity-80 font-normal text-sm hover:opacity-100 hover:bg-gray-600 cursor-pointer ${GroupSideBarOption === "members" ? "bg-gray-600 " : "bg-gray-700"}`} onClick={(e) => {
+                                e.preventDefault()
+                                setGroupSideBarOption("members")
+                            }}>Members</span>
+
+                            <span className={`w-1/2 py-3 text-gray-200 text-center border-r border-gray-600 opacity-80 font-normal text-sm hover:opacity-100 hover:bg-gray-600 cursor-pointer ${GroupSideBarOption === "media" ? "bg-gray-600 " : "bg-gray-700"}`} onClick={(e) => {
+                                e.preventDefault()
+                                setGroupSideBarOption("media")
+                            }}>Media</span>
                         </div>
-                        <div className='h-1/2 overflow-y-scroll '>
-                        </div>
+                            {GroupSideBarOption === "members" ?
+                                <div className='h-1/2 border border-gray-700 overflow-y-scroll '>
+                                    <div className='w-full border border-gray-700 h-12 bg-gray-600 '></div>
+                                    <div className='w-full border border-gray-700 h-12 bg-gray-600 '></div>
+                                    <div className='w-full border border-gray-700 h-12 bg-gray-600 '></div>
+                                    <div className='w-full border border-gray-700 h-12 bg-gray-600 '></div>
+                                    <div className='w-full border border-gray-700 h-12 bg-gray-600 '></div>
+                                    <div className='w-full border .
+                                    border-gray-700 h-12 bg-gray-600 '></div>
+                                    <div className='w-full border border-gray-700 h-12 bg-gray-600 '></div>
+                                </div>
+                                :
+                                <div className='h-2/3 lg:h-1/2 border border-gray-700 overflow-y-scroll grid grid-cols-3'>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                    <div className='h-12 md:h-14 lg:h-20 border border-gray-700 bg-gray-600 '>1</div>
+                                </div>
+                            }
                     </div>
 
                 </div>
