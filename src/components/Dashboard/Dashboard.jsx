@@ -13,7 +13,7 @@ function Dashboard() {
   const [cardComponents, setCardComponents] = useState([])
   useEffect(() => {
     const run = async () => {
-      await loadDashboard(cardComponents, setCardComponents, userID, mode)
+      await loadDashboard(cardComponents, setCardComponents, setActiveChat, userID, mode)
       console.log("cardcomponents :", cardComponents)
     }
     run()
@@ -28,6 +28,7 @@ function Dashboard() {
     title: ""
   }
   const [group, setGroup] = useState(initialGroup)
+  const [activeChat, setActiveChat] = useState(undefined)
 
   // handling back click function
   const handleBackClick = (e) => {
@@ -134,7 +135,11 @@ function Dashboard() {
           </div>
 
           <div className='bg-gray-600 text-gray-200 hidden sm:block sm:col-span-2 lg:col-span-3 '>
-            <Chat />
+            { activeChat === undefined?
+            <div className='text-xl px-3 py-1 text-gray-300'>Start sharing snaps!!</div>
+            :
+            <Chat active={activeChat}/>
+            }
           </div>
 
         </div>
@@ -151,7 +156,10 @@ export const GroupCard = (props) => {
           <img className='rounded-full' src={props.group.profileFile === undefined ? require('../../images/camera_light.png') : props.group.profileFile} alt="groupDp" />
         </div>
         <div>
-          <h2 className='font-semibold text-gray-200 cursor-pointer'>{props.group.title === "" ? "who's birthday🥳" : props.group.title}</h2>
+          <h2 className='font-semibold text-gray-200 cursor-pointer' onClick={() => {
+            console.log(props.Id)
+            props.setActiveChat(props.Id)
+          }}>{props.group.title === "" ? "who's birthday🥳" : props.group.title}</h2>
           <p className='text-xs text-gray-300 opacity-60'>{props.notification}</p>
         </div>
         <p className='text-xs text-gray-400 opacity-80 absolute bottom-3 right-2 font-sans'>{props.time}</p>

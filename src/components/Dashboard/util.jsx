@@ -25,17 +25,17 @@ export const created = (group, admin) => {
   // TODO - after promise successful need to create the groupCard element and might open the chat screen for larger screens. 
 }
 
-function loadCard(GroupDetails) {
+function loadCard(GroupDetails, setActiveChat) {
   const newChildCard = <GroupCard key={GroupDetails.$id} group={
     {
       profileFile: GroupDetails.profileFile === undefined ? undefined : GroupDetails.profileFile,
       title: GroupDetails.GroupTitle,
     }
-  } notification="welcome!" time={(GroupDetails.$updatedAt).slice(11,16)}/>
+  } notification="welcome!" time={(GroupDetails.$updatedAt).slice(11, 16)} Id={GroupDetails.$id} setActiveChat={setActiveChat}/>
   return newChildCard
 }
 
-export async function loadDashboard(cardComponents, setCardComponents, userId, mode) {
+export async function loadDashboard(cardComponents, setCardComponents, setActiveChat, userId, mode) {
   let cardComponentsArray = []
   try {
     const userDetails = await db.getUserDoc(userId)
@@ -43,28 +43,27 @@ export async function loadDashboard(cardComponents, setCardComponents, userId, m
     const groupIds = userDetails.JoinedGroupIDs
     const len = groupIds.length
     let isMssgInCardComp = "false"
-    
-    if ((mode === "signUp" && isMssgInCardComp==="false" && len === 0) || (mode === "signIn" && len === 0)) {
+    if ((mode === "signUp" && isMssgInCardComp === "false" && len === 0) || (mode === "signIn" && len === 0)) {
       let message = <p className='text-sm flex justify-center p-2 text-gray-400'>ⓘ Create Groups or Join existing one's</p>
       // setCardComponents([message])
       cardComponentsArray.push(message)
       console.log(isMssgInCardComp)
       isMssgInCardComp = "true"
     }
-    else if ((mode==="signUp" || mode === "signIn") && len === 1 && isMssgInCardComp === "true") {
+    else if ((mode === "signUp" || mode === "signIn") && len === 1 && isMssgInCardComp === "true") {
       try {
         let GroupDetails = await db.getGroupDoc(groupIds[0])
         cardComponentsArray.pop()
-        cardComponentsArray.push(loadCard(GroupDetails))
+        cardComponentsArray.push(loadCard(GroupDetails, setActiveChat))
         // setCardComponents([loadCard(GroupDetails)])
       } catch (error) { console.log(error) }
       isMssgInCardComp = false
     }
-    else if ((mode==="signUp" || mode === "signIn") && len && isMssgInCardComp === "false") {
+    else if ((mode === "signUp" || mode === "signIn") && len && isMssgInCardComp === "false") {
       for (let index = 0; index < len; index++) {
         try {
           let GroupDetails = await db.getGroupDoc(groupIds[index])
-          cardComponentsArray.unshift(loadCard(GroupDetails))
+          cardComponentsArray.unshift(loadCard(GroupDetails, setActiveChat))
           // setCardComponents([loadCard(GroupDetails), ...cardComponents])
         } catch (error) { console.log(error) }
       }
